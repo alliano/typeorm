@@ -1,0 +1,31 @@
+{
+  "name": "typeorm",
+  "version": "1.0.0",
+  "description": "belajar typeorm",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll",
+    "start:dev": "ts-node --transpile-only src/index.ts",
+    "start": "ts-node src/index.ts"
+  },
+  "keywords": [
+    "typeorm",
+    "orm_typescript"
+  ],
+  "author": "alliano",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "pg": "^8.14.1",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.21"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.14.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.3.1",
+    "ts-node": "^10.9.2"
+  }
+}
