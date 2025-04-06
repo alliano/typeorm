@@ -1,8 +1,9 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./user.entitiy";
+import { BaseEntity } from "./base.entity";
 
 @Entity({ name: "addresses" })
-export class Address {
+export class Address extends BaseEntity {
 
     @PrimaryGeneratedColumn({ type: "int", name: "id" })
     public id: number;
@@ -25,14 +26,5 @@ export class Address {
     @ManyToOne(() => User, (user) => user.addresses, { onDelete: "CASCADE"})
     @JoinColumn({ name: "user_id" })
     public user: User;
-
-    @Column({ type: "timestamp", name: "created_at", default: () => "CURRENT_TIMESTAMP" })
-    public createdAt: Date;
-
-    @Column({ type: "timestamp", name: "updated_at", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP" })
-    public updatedAt: Date;
-
-    @Column({ type: "timestamp", name: "deleted_at", nullable: true })
-    public deletedAt: Date;
 
 }

@@ -135,6 +135,16 @@ describe("pagination", () => {
     const result = await UserRepository.findAll(0, 10, "DESC");
     console.log(result);
   });
+
+  it('sof delete', async () => {
+    const userRepository = datasource.getRepository("User");
+    const user = await userRepository.findOneBy({ id: 1 });
+
+    await userRepository.softRemove(user!);
+    const deletedUser = await userRepository.findOneBy({ id: 1 });
+    expect(deletedUser).toBeFalsy();
+  }
+  );
 })
 
 
@@ -160,6 +170,7 @@ async function initUser(datasource: DataSource) {
   user.name = "Alliano";
   user.email = "alliano@gmail.com";
   user.password = "12345678";
+  
 
   address.country = "Indonesia";
   address.city = "Jakarta";

@@ -1,8 +1,9 @@
 import { Column, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./user.entitiy";
+import { BaseEntity } from "./base.entity";
 
 @Entity({ name: "roles" })
-export class Role {
+export class Role extends BaseEntity {
 
     @PrimaryGeneratedColumn({type: "int", name: "id"})
     public id: number;
@@ -12,15 +13,6 @@ export class Role {
 
     @Column({type: "text", name: "description"})
     public description: string;
-
-    @Column({type: "timestamp", name: "created_at", default: () => "CURRENT_TIMESTAMP"})
-    createdAt: Date;
-
-    @Column({type: "timestamp", name: "updated_at", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP"})
-    public updatedAt: Date;
-
-    @Column({type: "timestamp", name: "deleted_at", nullable: true})
-    deletedAt: Date;
 
     @ManyToMany(() => User, (user) => user.roles)
     @JoinColumn({ name: "user_id" })
